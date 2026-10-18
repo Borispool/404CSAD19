@@ -1,0 +1,14 @@
+
+build/
+out/
+bin/
+.cache/
+*.o
+*.exe
+*.dll
+*.so
+*.dylib
+.DS_Store
+.vscode/
+*.env
+*.pem
