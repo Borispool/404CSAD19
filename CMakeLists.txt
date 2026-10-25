@@ -15,12 +15,13 @@ FetchContent_MakeAvailable(googletest)
 
 enable_testing()
 
-add_executable(hello src/main.cpp src/math.hpp)
-target_include_directories(hello PRIVATE src)
+add_library(add_lib src/add.cpp src/add.hpp)
+target_include_directories(add_lib PUBLIC src)
 
-add_executable(hello_tests tests/test_main.cpp)
-target_include_directories(hello_tests PRIVATE src)
-target_link_libraries(hello_tests PRIVATE GTest::gtest_main)
+add_executable(hello src/hello.cpp)
+
+add_executable(hello_tests tests/test_add.cpp)
+target_link_libraries(hello_tests PRIVATE add_lib GTest::gtest_main)
 
 include(GoogleTest)
 gtest_discover_tests(hello_tests)
