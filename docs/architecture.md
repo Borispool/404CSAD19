@@ -7,8 +7,8 @@
 * Створення готового CI/CD workflow для GitHub Actions з матрицею з трьох операційних систем.
 
 ## 2. Використовувані Skills (.github/skills/)
-1. **project-scaffold**: формування базової структури каталогів (`src/`, `tests/`, `docs/`) та вихідного файлу `src/main.cpp`.
-2. **build-and-test**: конфігурація збірки `CMakeLists.txt`, завантаження GoogleTest, реалізація тесту `BasicAddition` у `tests/test_main.cpp`.
+1. **project-scaffold**: формування базової структури каталогів (`src/`, `tests/`, `docs/`) та точки входу `src/hello.cpp`.
+2. **build-and-test**: конфігурація збірки `CMakeLists.txt`, завантаження GoogleTest, створення математичного модуля у `src/add.hpp` і `src/add.cpp`, а також реалізація тесту `BasicAddition` у `tests/test_add.cpp`.
 3. **github-actions**: побудова `.github/workflows/ci.yml` із matrix-стратегією та створення допоміжних локальних скриптів `ci.sh` і `ci.bat`.
 
 ## 3. Доступні Commands (.github/prompts/)
@@ -21,8 +21,8 @@
 
 ## 4. Передача даних між етапами
 * `git-init` створює правила ігнорування, гарантуючи, що наступні кроки не додадуть каталог `build/` до репозиторію.
-* `create-project` створює назву та сигнатури функцій додатку, які зчитує `create-build` для підключення у юніт-тести та таргети CMake.
-* `create-build` фіксує команди збірки та тестування (`ctest`), які `create-actions` пакує у кросплатформні скрипти та конфігурацію workflow.
+* `create-project` створює точку входу `src/hello.cpp`, яка виводить `Hello, World!`.
+* `create-build` створює математичну функцію `add` у `src/add.hpp` та `src/add.cpp`, підключає її до бібліотеки CMake і тестів, а команди збірки та тестування (`ctest`) `create-actions` пакує у кросплатформні скрипти та конфігурацію workflow.
 * `check` валідує наявність усіх файлів, перевіряючи результати попередніх команд за чеклістом маніфесту.
 
 ## 5. Обробка помилок оркестратором
